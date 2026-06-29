@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | University Art Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #12100d;
+      color: #f5eadc;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+
+    header {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 42px;
+      align-items: center;
+      padding: 34px 0 44px;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #261f19, #191510);
+      border: 1px solid #7c644b;
+      border-radius: 30px;
+      padding: 38px;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    .eyebrow,
+    .tag {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: #d6a85f;
+      font-weight: 900;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.9;
+      margin: 16px 0;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      line-height: 1.65;
+      color: #dbcbb8;
+      max-width: 570px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      border-radius: 999px;
+      padding: 13px 20px;
+      background: #d6a85f;
+      color: #12100d;
+      border: 1px solid #d6a85f;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: #f5eadc;
+      border: 1px solid #7c644b;
+    }
+
+    .note {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #1f1914;
+      border-left: 4px solid #d6a85f;
+      padding: 16px 18px;
+      color: #dbcbb8;
+      border-radius: 12px;
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .featured-frame {
+      min-height: 590px;
+      border-radius: 34px;
+      border: 1px solid #7c644b;
+      overflow: hidden;
+      background: #1f1914;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.48);
+      position: relative;
+    }
+
+    .featured-frame img {
+      height: 590px;
+      object-fit: cover;
+      object-position: center;
+      filter: contrast(1.04) sepia(0.08);
+    }
+
+    .featured-label {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      background: rgba(18, 16, 13, 0.82);
+      border: 1px solid rgba(214, 168, 95, 0.55);
+      border-radius: 18px;
+      padding: 16px 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .featured-label h2 {
+      margin: 6px 0 0;
+      font-size: 28px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(18, 16, 13, 0.93);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #7c644b;
+      border-bottom: 1px solid #7c644b;
+      margin: 18px 0 76px;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: #261f19;
+      border: 1px solid #7c644b;
+      color: #f5eadc;
+    }
+
+    nav a:hover {
+      background: #d6a85f;
+      color: #12100d;
+    }
+
+    section {
+      margin-bottom: 100px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .section-description {
+      max-width: 760px;
+      margin: 18px auto 0;
+      text-align: center;
+      color: #dbcbb8;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      columns: 3 280px;
+      column-gap: 22px;
+      margin-top: 34px;
+    }
+
+    .art-card {
+      break-inside: avoid;
+      background: #261f19;
+      border: 1px solid #7c644b;
+      border-radius: 24px;
+      overflow: hidden;
+      margin: 0 0 22px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .art-card:hover {
+      transform: translateY(-5px);
+      border-color: #d6a85f;
+    }
+
+    .art-card img {
+      background: #1f1914;
+      filter: contrast(1.03) saturate(0.98);
+    }
+
+    .art-info {
+      padding: 18px;
+    }
+
+    .art-info .tag {
+      margin: 0 0 10px;
+      letter-spacing: 2px;
+    }
+
+    .art-info h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .art-info p {
+      margin: 0;
+      color: #c9b7a3;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .panel {
+      background: #261f19;
+      border: 1px solid #7c644b;
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      font-size: 29px;
+    }
+
+    .panel p,
+    .panel li {
+      color: #dbcbb8;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .process-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      background: #1f1914;
+      border: 1px solid #7c644b;
+      border-radius: 20px;
+    }
+
+    .number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #d6a85f;
+      color: #12100d;
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+
+    .process-step h4 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .process-step p {
+      margin: 0;
+      color: #c9b7a3;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .portrait {
+      border-radius: 30px;
+      border: 1px solid #7c644b;
+      overflow: hidden;
+      background: #1f1914;
+    }
+
+    .portrait img {
+      height: 430px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .contact-card {
+      background: #261f19;
+      border: 1px solid #7c644b;
+      border-radius: 22px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: #c9b7a3;
+    }
+
+    footer {
+      border-top: 1px solid #7c644b;
+      text-align: center;
+      padding: 30px 0;
+      color: #c9b7a3;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      background: rgba(10, 8, 6, 0.96);
+      margin: 0;
+      padding: 28px;
+      overflow: auto;
+    }
+
+    .lightbox:target {
+      display: grid;
+      place-items: center;
+    }
+
+    .close {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      font-size: 44px;
+      line-height: 1;
+      color: #f5eadc;
+      background: #261f19;
+      border: 1px solid #7c644b;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      z-index: 101;
+    }
+
+    .lightbox-content {
+      max-width: 1050px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .lightbox-content img {
+      max-height: 82vh;
+      object-fit: contain;
+      background: #1f1914;
+      border: 1px solid #7c644b;
+      border-radius: 24px;
+    }
+
+    .lightbox-text {
+      background: #261f19;
+      border: 1px solid #7c644b;
+      border-radius: 24px;
+      padding: 26px;
+    }
+
+    .lightbox-text h2 {
+      font-size: 42px;
+      margin: 8px 0 14px;
+    }
+
+    .lightbox-text p {
+      color: #dbcbb8;
+      line-height: 1.7;
+    }
+
+    .lightbox-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .lightbox-nav a {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid #7c644b;
+      background: #1f1914;
+    }
+
+    @media (max-width: 900px) {
+      header,
+      .two-column,
+      .about-layout,
+      .lightbox-content {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-frame,
+      .featured-frame img {
+        min-height: auto;
+        height: auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 18px 14px;
+      }
+
+      .hero-card,
+      .panel {
+        padding: 24px;
+      }
+
+      nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      nav a {
+        white-space: nowrap;
+      }
+
+      .lightbox {
+        padding: 80px 14px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header id="home">
+      <div class="hero-card">
+        <div class="eyebrow">University Art Portfolio</div>
+        <h1>Your Name</h1>
+
+        <p class="subtitle">
+          A curated collection of surreal sketchbook drawings, symbolic compositions,
+          graphite studies, ink linework, and visual storytelling.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#portfolio" class="button">View Portfolio</a>
+          <a href="#process" class="button secondary">View Process</a>
+        </div>
+
+        <div class="note">
+          Replace “Your Name” with your real name. This portfolio is designed to feel
+          polished for a university submission while still keeping the hand-drawn,
+          sketchbook personality of your work.
+        </div>
+      </div>
+
+      <a href="#art-1" class="featured-frame">
+        <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_172814.jpg" alt="Featured artwork">
+        <div class="featured-label">
+          <div class="eyebrow">Featured Work</div>
+          <h2>Skull Passage</h2>
+        </div>
+      </a>
+    </header>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+
+      <section id="portfolio">
+        <div class="section-title">
+          <div class="eyebrow">Selected Work</div>
+          <h2>Portfolio</h2>
+
+          <p class="section-description">
+            A selection of drawings focused on surreal imagery, eyes, skulls, organic forms,
+            repeated symbols, and imagined spaces. Click any piece to view it larger.
+          </p>
+        </div>
+
+        <div class="gallery">
+
+          <article class="art-card">
+            <a href="#art-1">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_172814.jpg" alt="Skull Passage">
+            </a>
+            <div class="art-info">
+              <p class="tag">Featured</p>
+              <h3>Skull Passage</h3>
+              <p>Ink and pencil surreal composition with layered worlds, symbols, and architectural forms.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-2">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173434.jpg" alt="Jellyfish Study">
+            </a>
+            <div class="art-info">
+              <p class="tag">Sketchbook</p>
+              <h3>Jellyfish Study</h3>
+              <p>Graphite study focused on organic movement, transparent form, and soft value changes.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-3">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173518.jpg" alt="Serpent Eclipse">
+            </a>
+            <div class="art-info">
+              <p class="tag">Featured</p>
+              <h3>Serpent Eclipse</h3>
+              <p>Graphite and ink drawing using contrast, scale, and symbolism.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-4">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173549.jpg" alt="Celestial Eye">
+            </a>
+            <div class="art-info">
+              <p class="tag">Featured</p>
+              <h3>Celestial Eye</h3>
+              <p>Detailed ink study exploring symmetry, line weight, and radiating texture.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-5">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173831.jpg" alt="Cloud Creature Sketch">
+            </a>
+            <div class="art-info">
+              <p class="tag">Sketchbook</p>
+              <h3>Cloud Creature Sketch</h3>
+              <p>Light blue pencil sketch showing playful character design and background patterning.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-6">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173926.jpg" alt="Eye City">
+            </a>
+            <div class="art-info">
+              <p class="tag">Featured</p>
+              <h3>Eye City</h3>
+              <p>Textural ink drawing using repeated marks, symbols, and dense architectural shapes.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-7">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173926.jpg" alt="Skull Window">
+            </a>
+            <div class="art-info">
+              <p class="tag">Color Work</p>
+              <h3>Skull Window</h3>
+              <p>Mixed graphite and colored pencil piece combining portrait scale with a space scene.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-8">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_174127.jpg" alt="Black Hole View">
+            </a>
+            <div class="art-info">
+              <p class="tag">Color Work</p>
+              <h3>Black Hole View</h3>
+              <p>Colored pencil space composition focused on scale, atmosphere, and contrast.</p>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <a href="#art-9">
+              <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_174253.jpg" alt="The Smoking Guy">
+            </a>
+            <div class="art-info">
+              <p class="tag">Sketchbook</p>
+              <h3>The Smoking Guy</h3>
+              <p>Ink illustration with detailed borders, miniature symbols, and narrative humor.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="section-title">
+          <div class="eyebrow">Development</div>
+          <h2>Process</h2>
+
+          <p class="section-description">
+            This section explains how the work develops from rough ideas into detailed drawings.
+            Universities often value seeing how you think, not only the final image.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <div class="panel">
+            <h3>How I Develop a Piece</h3>
+
+            <div class="process-grid">
+              <div class="process-step">
+                <div class="number">1</div>
+                <div>
+                  <h4>Concept</h4>
+                  <p>I begin with a symbol, object, creature, or strange image that could suggest a story.</p>
+                </div>
+              </div>
+
+              <div class="process-step">
+                <div class="number">2</div>
+                <div>
+                  <h4>Composition</h4>
+                  <p>I test scale, balance, and placement so the drawing feels dramatic and readable.</p>
+                </div>
+              </div>
+
+              <div class="process-step">
+                <div class="number">3</div>
+                <div>
+                  <h4>Texture</h4>
+                  <p>I build tone using repeated lines, hatching, cross-hatching, and dense mark-making.</p>
+                </div>
+              </div>
+
+              <div class="process-step">
+                <div class="number">4</div>
+                <div>
+                  <h4>Final Details</h4>
+                  <p>I add small symbols, shadows, borders, and focal points to make the piece feel complete.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Portfolio Notes</h3>
+
+            <p>
+              The strongest parts of this collection are the bold contrast, surreal themes,
+              and detailed line textures. For a university portfolio, you could add short
+              captions beside each work explaining the idea and the materials used.
+            </p>
+
+            <ul>
+              <li>Mediums: graphite, ink, colored pencil, sketchbook drawing.</li>
+              <li>Common themes: skulls, eyes, space, creatures, symbols, portals, and scale.</li>
+              <li>Skills shown: mark-making, detail, contrast, imagination, and composition.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-title">
+          <div class="eyebrow">Artist Statement</div>
+          <h2>About Me</h2>
+        </div>
+
+        <div class="about-layout">
+          <div class="portrait">
+            <img src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173549.jpg" alt="Portfolio preview image">
+          </div>
+
+          <div class="panel">
+            <h3>Hello, I’m Your Name.</h3>
+
+            <p>
+              I create surreal drawings that combine symbols, creatures, skulls, eyes,
+              space imagery, and imagined worlds. My work often uses contrast and repeated
+              linework to create atmosphere and visual tension.
+            </p>
+
+            <p>
+              I am interested in how small details can make a drawing feel like part of a
+              larger story. This portfolio shows my development in pencil, ink, composition,
+              and visual storytelling.
+            </p>
+
+            <p>
+              Replace this section with your own real artist statement before submitting it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title">
+          <div class="eyebrow">Connect</div>
+          <h2>Contact</h2>
+
+          <p class="section-description">
+            Add a professional email or art account here. For university, you can also
+            replace this section with your application information.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Email</h3>
+            <p>yourname@email.com</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Instagram</h3>
+            <p>@yourartaccount</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Portfolio</h3>
+            <p>yourwebsite.com</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © 2026 Your Name. All artwork belongs to the artist.
+    </footer>
+  </div>
+
+</body>
+</html>
