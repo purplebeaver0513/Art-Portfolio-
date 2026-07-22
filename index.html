@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koston</title>
+  <title>Your Name | University Art Portfolio</title>
 
   <style>
     * {
@@ -552,6 +552,187 @@
       }
     }
 
+  
+    /* Improved full artwork view */
+    .lightbox {
+      padding: 18px 20px 60px;
+    }
+
+    .lightbox:target {
+      display: block;
+    }
+
+    .close {
+      position: fixed;
+      top: 18px;
+      right: 18px !important;
+      left: auto !important;
+      width: 58px;
+      height: 58px;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 45px;
+      font-weight: 300;
+      line-height: 1;
+      z-index: 1001;
+    }
+
+    .lightbox-content {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding-top: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .artwork-visual {
+      min-width: 0;
+      display: grid;
+      gap: 22px;
+    }
+
+    .artwork-visual > img {
+      width: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: #1f1914;
+      border: 1px solid #7c644b;
+      border-radius: 24px;
+    }
+
+    .lightbox-text {
+      position: sticky;
+      top: 18px;
+      max-height: calc(100vh - 36px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #7c644b #1f1914;
+    }
+
+    .lightbox-text::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .lightbox-text::-webkit-scrollbar-track {
+      background: #1f1914;
+      border-radius: 999px;
+    }
+
+    .lightbox-text::-webkit-scrollbar-thumb {
+      background: #7c644b;
+      border-radius: 999px;
+    }
+
+    .piece-process {
+      padding: 28px;
+      background: #261f19;
+      border: 1px solid #7c644b;
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+    }
+
+    .piece-process h3 {
+      margin: 7px 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.05;
+    }
+
+    .piece-process-intro {
+      margin: 0 0 22px;
+      color: #c9b7a3;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .piece-process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .piece-process-step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      background: #1f1914;
+      border: 1px solid rgba(124, 100, 75, 0.9);
+      border-radius: 18px;
+    }
+
+    .piece-process-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #d6a85f;
+      color: #12100d;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+    }
+
+    .piece-process-step h4 {
+      margin: 1px 0 6px;
+      font-size: 18px;
+    }
+
+    .piece-process-step p {
+      margin: 0;
+      color: #c9b7a3;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 980px) {
+      .lightbox {
+        padding: 82px 14px 40px;
+      }
+
+      .close {
+        top: 12px;
+        right: 12px !important;
+      }
+
+      .lightbox-content {
+        grid-template-columns: 1fr;
+      }
+
+      .lightbox-text {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+
+      .piece-process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .piece-process {
+        padding: 21px;
+      }
+
+      .piece-process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .artwork-visual,
+      .lightbox-content {
+        gap: 16px;
+      }
+    }
+
   </style>
 </head>
 
@@ -858,10 +1039,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_172814.jpg"
         alt="Skull Passage"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Initial Idea</h4>
+              <p>I began with the idea of a skull acting as a passage into a hidden world rather than only as a symbol.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Composition</h4>
+              <p>The large skull, central staircase, circular forms, and smaller internal landscape were arranged to create several visual levels.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Ink and Texture</h4>
+              <p>Hatching and cross-hatching were added gradually to separate the light paper from the darkest focal areas.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Miniature Details</h4>
+              <p>Small figures, trees, structures, and symbols were added last so the viewer could discover more through close observation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Featured</p>
@@ -908,10 +1131,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173434.jpg"
         alt="Jellyfish Study"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Observation</h4>
+              <p>I first simplified the jellyfish into its main bell, central body, and long flowing tentacles.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Contour Drawing</h4>
+              <p>Light outlines were used to keep the form delicate and to preserve the feeling of underwater movement.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Building Value</h4>
+              <p>Graphite was layered most heavily beneath the bell and around the central structures to suggest depth.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Soft Refinement</h4>
+              <p>Edges and transitions were softened so the subject would appear transparent, weightless, and organic.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Sketchbook</p>
@@ -956,10 +1221,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173518.jpg"
         alt="Serpent Eclipse"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Symbol Selection</h4>
+              <p>The skull, serpent, eclipse, and rock forms were chosen as connected symbols of danger and transformation.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Circular Movement</h4>
+              <p>The serpent was wrapped around the skull to guide the viewer upward toward the eclipse and back through the image.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Contrast</h4>
+              <p>Dark ink areas were placed beside lighter graphite sections to make the serpent, skull, and eclipse stand out.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Surface Detail</h4>
+              <p>Scales, shadows, stone textures, and surrounding marks were built up to give the scene a dramatic atmosphere.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Featured</p>
@@ -1005,10 +1312,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173549.jpg"
         alt="Celestial Eye"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Central Concept</h4>
+              <p>The design began by combining the shapes of an eye, a star, and a celestial object into one symbol.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Symmetry</h4>
+              <p>The four pointed sections were balanced around the centre to create a strong and controlled structure.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Line Weight</h4>
+              <p>Thicker outlines were used around the main forms while thinner marks created internal shading and depth.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Radiating Texture</h4>
+              <p>Repeated strokes and small marks were added around the outer shapes to suggest light, energy, and movement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Featured</p>
@@ -1053,10 +1402,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173831.jpg"
         alt="Cloud Creature Sketch"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Character Idea</h4>
+              <p>Purple Beaver was developed as a simple, readable character with an expressive pose and recognizable silhouette.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>World Design</h4>
+              <p>Chinese-inspired cloud and mountain motifs were placed around the character to establish an imaginative setting.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Light Sketching</h4>
+              <p>Blue pencil allowed me to test shapes and placement without making the early construction lines feel too heavy.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Environmental Details</h4>
+              <p>Repeated clouds, falling marks, and distant mountains were added to make the world feel active and expansive.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Sketchbook</p>
@@ -1101,10 +1492,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_173926.jpg"
         alt="Eye in die"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Creative Restriction</h4>
+              <p>I decided that the entire image would be constructed from repeated versions of the word “die.”</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Large Shapes First</h4>
+              <p>The main eye, skyline, towers, and arches were mapped out before the smaller writing was added.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Density and Value</h4>
+              <p>Words were layered more heavily in shadowed areas and spaced farther apart in lighter areas.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Hidden Details</h4>
+              <p>Small structures, repeated symbols, and varied letter sizes were added so the piece changes when viewed up close.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Featured</p>
@@ -1150,10 +1583,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_174032.jpg"
         alt="Skull Space"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Portal Concept</h4>
+              <p>The eye socket of a large skull was imagined as a window opening onto a distant space scene.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Close Composition</h4>
+              <p>The skull was cropped tightly so the eye socket would become the main frame and focal area.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Selective Colour</h4>
+              <p>Blue, orange, and yellow were limited to the space scene so it would stand apart from the graphite skull.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Graphite Refinement</h4>
+              <p>Soft shading, darker contours, and cross-hatched shadows were added to give the skull weight and depth.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Color Work</p>
@@ -1199,10 +1674,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_174127.jpg"
         alt="Black Hole View"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Sense of Scale</h4>
+              <p>The idea began with a tiny spacecraft placed between Earth and an overwhelmingly large black hole.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Placement</h4>
+              <p>Earth was moved into the lower corner while the black hole occupied the upper area to create visual imbalance and tension.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Colour Layers</h4>
+              <p>Yellow and orange pencil were gradually layered into rings around the dark centre to suggest heat and light.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Final Contrast</h4>
+              <p>The black centre and open background were strengthened so the spacecraft remained small but clearly visible.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Color Work</p>
@@ -1248,10 +1765,52 @@
     <a href="#portfolio" class="close" aria-label="Back to portfolio">×</a>
 
     <div class="lightbox-content">
-      <img
+      <div class="artwork-visual">
+<img
         src="https://raw.githubusercontent.com/purplebeaver0513/Art-Portfolio-Assests/refs/heads/main/20260629_174253.jpg"
         alt="The Smoking Guy"
       >
+
+      <section class="piece-process">
+        <p class="tag">Process Behind the Piece</p>
+        <h3>From the first idea to the final drawing</h3>
+        <p class="piece-process-intro">
+          This shows the main decisions and stages that shaped the finished artwork.
+        </p>
+
+        <div class="piece-process-grid">
+
+          <div class="piece-process-step">
+            <div class="piece-process-number">1</div>
+            <div>
+              <h4>Narrative Idea</h4>
+              <p>The central skeleton and title were developed as a darkly humorous story about a character remembered for one habit.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">2</div>
+            <div>
+              <h4>Tomb Structure</h4>
+              <p>The large enclosing shape was drawn first to frame the skeleton and organize the crowded composition.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">3</div>
+            <div>
+              <h4>Symbol Border</h4>
+              <p>Tiny objects, bones, shapes, and icons were placed around the inner border like fragments of memory.</p>
+            </div>
+          </div>
+          <div class="piece-process-step">
+            <div class="piece-process-number">4</div>
+            <div>
+              <h4>Dense Ground</h4>
+              <p>Repeated ink marks were built up beneath the tomb to create weight, texture, and a strong visual base.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
 
       <article class="lightbox-text">
         <p class="tag">Sketchbook</p>
